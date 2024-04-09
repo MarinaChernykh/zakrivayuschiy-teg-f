@@ -13,8 +13,8 @@
 .content {
   inline-size: var(--content-width);
   margin: auto;
-  background-color: var(--background-color);
   border: 2px solid var(--main-color);
+  background-color: var(--background-color);
 }
 
 .header {
@@ -23,18 +23,18 @@
   align-items: center;
   margin-block: 100px;
   padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
-  padding-block-end: 25px;
+  padding-block-end: 20px;
   font-family: var(--accent-font, sans-serif);
 }
 
 .header__logo {
-  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   margin-block-end: 20px;
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
 
 }
 .header__title {
-  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   margin-block-end: 25px;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   text-transform: uppercase;
 }
 
@@ -52,12 +52,21 @@
 
 .theme-menu__button {
   border: none;
-  background-color: transparent;
   padding: 0;
-  text-transform: uppercase;
-  cursor: pointer;
   opacity: 1;
+  text-transform: uppercase;
+  background-color: transparent;
   transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .theme-menu__button:disabled::before {
@@ -70,25 +79,19 @@
 
 .theme-menu__button::after {
   content: '';
-  display: block;
-  inline-size: 0%;
-  block-size: 1px;  
+  display: block;  
   background-color: var(--main-color);
   transition: inline-size 0.3s ease;
-}
-
-.theme-menu__button:hover {
-  opacity: 0.6;
-}
-
-.theme-menu__button:disabled {
-  opacity: 0.6;
-  pointer-events: none;
+  inline-size: 0%;
+  block-size: 2px;
 }
 
 .theme-menu__button:focus {
-  opacity: 0.6;
   outline: none;
+}
+
+.theme-menu__button:focus-visible {
+  opacity: 0.6;
 }
 
 .theme-menu__button:focus-visible::after {
@@ -102,23 +105,23 @@
 }
 
 .card__title {
+  padding: 4px 10px;
+  font-weight: var(--title-weight);
   font-size: 18px;
   line-height: 1.21;
-  font-weight: 700;
-  padding: 4px 10px;
 }
 
 .card__image-container {
   position: relative;
+  border-block: 2px solid var(--main-color);
 }
 
 .card__image {
-  display: block;
   inline-size: 100%;
   aspect-ratio: 1/1;
+  display: block;
   object-fit: cover;
   object-position: center;
-  border-block: 2px solid var(--main-color);
 }
 
 .card__list li:first-child .card__image {
@@ -155,27 +158,27 @@
 
 .card__image-label {
   position: absolute;
-  z-index: 1;
   top: 25px;
   right: 25px;
+  z-index: 1;
+  opacity: 0.5;
   font-family: var(--accent-font, sans-serif);
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
-  opacity: 0.5;
-  mix-blend-mode: hard-light;
   text-shadow:
     -1px 0 var(--text-stroke-color), 
     0 1px var(--text-stroke-color), 
     1px 0 var(--text-stroke-color), 
     0 -1px var(--text-stroke-color);
+  mix-blend-mode: hard-light;
 }
 
 @supports((text-stroke: 1px var(--text-stroke-color)) or (-webkit-text-stroke: 1px var(--text-stroke-color))) {
   .card__image-label {
+      text-shadow: none;
       -webkit-text-stroke: 1px var(--text-stroke-color);
       text-stroke: 1px var(--text-stroke-color);
-      text-shadow: none;
   }
 }
 
@@ -196,56 +199,58 @@
 }
 
 .button {
-  background-color: var(--background-color);
-  border: 2px solid var(--main-color);
-
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  transition: box-shadow 0.3s ease;
-  position: relative;
+  border: 2px solid var(--main-color);
   overflow: hidden;
+  background-color: var(--background-color);
+  transition: box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .button::before {
   content: "";
-  height: 100%;
-  width: 100%;
-  background-color: currentColor;
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateX(-100%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
   transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
 }
 
 .button__text {
   z-index: 1;
+  color: var(--button-text-color);
   font-family: var(--accent-font, sans-serif);
   font-size: 14px;
   line-height: 14px;
-  color: var(--button-text-color);
+  text-transform: uppercase;
   mix-blend-mode: difference;
 }
 
 .button:focus {
   outline: none;
+}
+
+.button:focus-visible {
   box-shadow: 2px 2px currentColor;
   transition: box-shadow 0.3s ease;
 }
 
 .button:hover::before {
-  transform: translateX(0);
   transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
 }
 
 .card__icon-button {
-  background-color: transparent;
-  padding: 0;
-  border: 2px solid transparent;
   block-size: 38px;
+  border: 2px solid transparent;
+  padding: 0;
+  background-color: transparent;
   transition: border 0.3s ease;
   cursor: pointer;
 }
@@ -265,52 +270,54 @@
 
 .save-button {
   gap: 8px;
-  margin: 52px auto 100px;
   inline-size: 335px;
   block-size: 55px;
+  margin: 52px auto 100px;
 }
 
 .save-button__icon {
   inline-size: 21px;
   aspect-ratio: 1 / 1;
+  z-index: 1;
   color: var(--button-text-color);
   mix-blend-mode: difference;
-  z-index: 1;
+}
+
+.dialog {
+  inline-size: clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem);
+  border: 2px solid var(--main-color);
+  padding: 30px;
+  background-color: var(--background-color);
 }
 
 .dialog[open] {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  inline-size: clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem);
-  background-color: var(--background-color);
-  border: 2px solid var(--main-color);
-  padding: 30px;
 }
 
-dialog::backdrop {
-  background-color: var(--background-dialog);
-  opacity: 0.75;
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
 }
 
 .dialog__content {
   display: flex;
-  gap: 12px;
+  gap: 20px;
 }
 
 .dialog__content-title {
+  color: var(--main-color);
   font-family: var(--accent-font, sans-serif);
   font-size: 14px;
   line-height: 150%;
   text-transform: uppercase;
-  color: var(--main-color);
 }
 
 .dialog__icon {
   inline-size: 39px;
   aspect-ratio: 1 / 1;
-  color: var(--main-color);
   flex-shrink: 0;
+  color: var(--main-color);
 }
 
 .dialog__close-button {
@@ -319,6 +326,10 @@ dialog::backdrop {
 }
 
 @media (width <= 375px) {
+  .card__image-label {
+    right: 11px;
+  }
+
   .save-button {
     flex-direction: column;
     inline-size: 306px;
