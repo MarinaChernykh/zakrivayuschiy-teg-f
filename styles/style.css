@@ -79,7 +79,7 @@
 
 .theme-menu__button::after {
   content: '';
-  display: block;  
+  display: block;
   background-color: var(--main-color);
   transition: inline-size 0.3s ease;
   inline-size: 0%;
@@ -228,7 +228,6 @@
   font-family: var(--accent-font, sans-serif);
   font-size: 14px;
   line-height: 14px;
-  text-transform: uppercase;
   mix-blend-mode: difference;
 }
 
@@ -323,6 +322,7 @@
 .dialog__close-button {
   inline-size: 100%;
   block-size: 38px;
+  text-transform: uppercase;
 }
 
 @media (width <= 375px) {
@@ -341,6 +341,6 @@
   }
 
   .dialog {
-    padding: 30px 42px;
+    padding: 30px 38px;
   }
 }
